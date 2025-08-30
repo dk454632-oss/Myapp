@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Web App</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    input { padding: 5px; border: 1px solid #ccc; }
+    button { padding: 5px 10px; margin-left: 5px; }
+    ul { margin-top: 20px; }
+    li { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <h2>📝 My ToDo List</h2>
+  <input id="taskInput" placeholder="Enter a task" />
+  <button onclick="addTask()">Add</button>
+  <ul id="taskList"></ul>
+
+  <script>
+    function addTask() {
+      let taskInput = document.getElementById("taskInput");
+      let taskList = document.getElementById("taskList");
+
+      if (taskInput.value.trim() !== "") {
+        let li = document.createElement("li");
+        li.textContent = taskInput.value;
+        taskList.appendChild(li);
+        taskInput.value = "";
+      }
+    }
+  </script>
+</body>
+</html>
