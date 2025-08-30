@@ -1,49 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My ToDo List</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 30px; }
-    input { padding: 5px; border: 1px solid #ccc; }
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; text-align: center; }
+    h1 { color: #333; margin-top: 10px; }
+    #date { font-size: 18px; margin-bottom: 20px; color: #555; }
+    input { padding: 5px; }
     button { padding: 5px 10px; margin-left: 5px; }
-    ul { margin-top: 20px; }
-    li { margin: 5px 0; }
-    footer { margin-top: 50px; text-align: center; color: gray; }
+    ul { margin-top: 15px; list-style-type: none; padding: 0; }
+    li { margin: 5px 0; padding: 5px; background: #fff; border-radius: 5px; }
+    footer { margin-top: 30px; text-align: center; font-size: 14px; color: #777; }
+    img { margin-top: 10px; border-radius: 50%; }
   </style>
 </head>
 <body>
-  <h2>📝 My ToDo List</h2>
-  <p>आज की तारीख: <span id="date"></span></p>
+  <!-- 🔹 Logo Image -->
+  <img src="logo.png" alt="My Logo" width="100">
 
-  <input id="taskInput" placeholder="Enter a task" />
+  <!-- 🔹 Title -->
+  <h1>📝 My ToDo List</h1>
+
+  <!-- 🔹 Date -->
+  <div id="date"></div>
+
+  <!-- 🔹 Input + Button -->
+  <input type="text" id="taskInput" placeholder="Enter a task" />
   <button onclick="addTask()">Add</button>
+
+  <!-- 🔹 Task List -->
   <ul id="taskList"></ul>
 
-  <footer>
-    <p>© मेरी वेबसाइट | <span id="year"></span></p>
-  </footer>
+  <!-- 🔹 Footer -->
+  <footer>© <span id="year"></span> My Website</footer>
 
   <script>
-    // ✅ To-Do List Function
-    function addTask() {
-      let taskInput = document.getElementById("taskInput");
-      let taskList = document.getElementById("taskList");
+    // Show today's date
+    const date = new Date();
+    document.getElementById("date").innerText = "📅 Today: " + date.toDateString();
 
-      if (taskInput.value.trim() !== "") {
+    // Show current year
+    document.getElementById("year").innerText = date.getFullYear();
+
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let task = input.value.trim();
+      if (task) {
         let li = document.createElement("li");
-        li.textContent = taskInput.value;
-        taskList.appendChild(li);
-        taskInput.value = "";
+        li.textContent = task;
+        document.getElementById("taskList").appendChild(li);
+        input.value = "";
       }
     }
-
-    // ✅ Current Date दिखाना
-    let today = new Date();
-    let options = { day: '2-digit', month: 'long', year: 'numeric' };
-    document.getElementById("date").innerText = today.toLocaleDateString("hi-IN", options);
-
-    // ✅ सिर्फ साल footer में
-    document.getElementById("year").innerText = today.getFullYear();
   </script>
 </body>
 </html>
